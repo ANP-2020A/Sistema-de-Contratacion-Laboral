@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Oferta_Empleo;
 use Illuminate\Http\Request;
-use app\Oferta_Empleo;
 
 class Oferta_EmpleoController extends Controller
 {
@@ -12,27 +12,27 @@ class Oferta_EmpleoController extends Controller
         return Oferta_Empleo::all();
     }
 
-    public function show(Oferta_Empleo $Oferta_Empleo )
+    public function show(Oferta_Empleo $ofertaempleo)
     {
-        return $Oferta_Empleo;
+        return $ofertaempleo;
     }
 
     public function store(Request $request)
     {
-        $Oferta_Empleo = Oferta_Empleo::create($request->all());
-        return response()->json($Oferta_Empleo, 201);
+        $ofertaempleo = Oferta_Empleo::create($request->all());
+        return response()->json($ofertaempleo, 201);
     }
 
-    public function update(Request $request, Oferta_Empleo $Oferta_Empleo)
+    public function update(Request $request, Oferta_Empleo $ofertaempleo)
     {
 
-        $Oferta_Empleo->update($request->all());
-        return response()->json($Oferta_Empleo, 200);
+        $ofertaempleo->update($request->all());
+        return response()->json($ofertaempleo, 200);
     }
 
-    public function delete(Request $request, Oferta_Empleo $Oferta_Empleo)
+    public function delete(Request $request, Oferta_Empleo $ofertaempleo)
     {
-        $Oferta_Empleo->delete();
+        $ofertaempleo->delete();
         return response()->json(null, 204);
     }
 }
