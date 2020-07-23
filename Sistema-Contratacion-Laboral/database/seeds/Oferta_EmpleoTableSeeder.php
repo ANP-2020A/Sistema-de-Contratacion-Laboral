@@ -20,7 +20,7 @@ class Oferta_EmpleoTableSeeder extends Seeder
         for ($i = 0; $i < 15; $i++) {
             Oferta_Empleo::create([
                 'Descripcion' => $faker->text,
-                'Vacantes' => $faker->numberBetween(1,24)
+                'Vacantes' => $faker->numberBetween(1,24),
             ]);
         }
     }

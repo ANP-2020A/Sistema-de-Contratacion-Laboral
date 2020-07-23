@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use app\Oferta_Empleo;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +20,8 @@ use app\Oferta_Empleo;
 //});
 
 
-Route::get('Oferta_Empleo', 'Oferta_EmpleoController@index');
-Route::get('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@show');
-Route::post('Oferta_Empleo', 'Oferta_EmpleoController@store');
-Route::put('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@update');
-Route::delete('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@delete');
+Route::get('oferta_empleo', 'Oferta_EmpleoController@index');
+Route::get('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@show');
+Route::post('oferta_empleo', 'Oferta_EmpleoController@store');
+Route::put('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@update');
+Route::delete('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@delete');

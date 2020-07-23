@@ -16,7 +16,7 @@ class CreateOfertaEmpleosTable extends Migration
         Schema::create('oferta__empleos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Descripcion');
-            $table->string('Vacantes');
+            $table->integer('Vacantes');
             $table->timestamps();
         });
     }
