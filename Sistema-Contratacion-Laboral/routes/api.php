@@ -19,8 +19,13 @@ use app\Oferta_Empleo;
 //});
 
 
-Route::get('Oferta_Empleo', 'Oferta_EmpleoController@index');
-Route::get('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@show');
-Route::post('Oferta_Empleo', 'Oferta_EmpleoController@store');
-Route::put('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@update');
-Route::delete('Oferta_Empleo/{Oferta_Empleo}', 'Oferta_EmpleoController@delete');
+Route::post('register', 'UserController@register');
+Route::post('login', 'UserController@authenticate');
+Route::get('oferta_empleos', 'Oferta_EmpleoController@index');
+Route::group(['middleware' => ['jwt.verify']], function() {
+    Route::get('user', 'UserController@getAuthenticatedUser');
+    Route::get('oferta_empleos/{oferta_empleo}', 'Oferta_EmpleoController@show');
+    Route::post('oferta_empleos', 'Oferta_EmpleoController@store');
+    Route::put('oferta_empleos/{oferta_empleo}', 'Oferta_EmpleoController@update');
+    Route::delete('oferta_empleos/{oferta_empleo}', 'Oferta_EmpleoController@delete');
+});
