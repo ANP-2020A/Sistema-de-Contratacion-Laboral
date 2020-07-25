@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use app\Oferta_Empleo;
+use app\Oferta_;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('register', 'UserController@register');
 Route::post('login', 'UserController@authenticate');
-Route::get('oferta_empleos', 'Oferta_EmpleoController@index');
+Route::get('oferta', 'OfertaController@index');
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('oferta_empleo', 'Oferta_EmpleoController@index');
-    Route::get('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@show');
-    Route::post('oferta_empleo', 'Oferta_EmpleoController@store');
-    Route::put('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@update');
-    Route::delete('oferta_empleo/{ofertaempleo}', 'Oferta_EmpleoController@delete');
+    Route::get('oferta', 'OfertaController@index');
+    Route::get('oferta/{ofertaempleo}', 'OfertaController@show');
+    Route::post('oferta', 'OfertaController@store');
+    Route::put('oferta/{ofertaempleo}', 'OfertaController@update');
+    Route::delete('oferta/{ofertaempleo}', 'OfertaController@delete');
 });
 
 

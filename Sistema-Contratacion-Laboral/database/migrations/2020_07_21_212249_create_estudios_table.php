@@ -15,9 +15,11 @@ class CreateEstudiosTable extends Migration
     {
         Schema::create('estudios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Descripciòn_de_estudios');
-            $table->date('Fecha_inicio');
-            $table->date('Fecha_Finalización');
+            $table->string('institucion');
+            $table->string('nivel');
+            $table->date('fecha_inicio');
+            $table->date('fecha_finalización');
+            $table->string('nivel_ingles');
             $table->timestamps();
         });
     }

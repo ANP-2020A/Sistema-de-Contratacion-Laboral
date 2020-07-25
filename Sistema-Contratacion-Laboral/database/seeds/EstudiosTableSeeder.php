@@ -18,9 +18,11 @@ class EstudiosTableSeeder extends Seeder
         // Crear artículos ficticios en la tabla
         for ($i = 0; $i < 50; $i++) {
             Estudio::create([
-                'Descripciòn_de_estudios' => $faker->paragraph,
-                'Fecha_inicio' => $faker->dateTime,
-                'Fecha_Finalización' => $faker->dateTime,
+                'institucion' => $faker->text,
+                'nivel' => $faker->text,
+                'nivel_ingles' => $faker->text,
+                'fecha_inicio' => $faker->dateTime,
+                'fecha_finalización' => $faker->dateTime,
             ]);
         }
     }

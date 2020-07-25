@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Experiencia extends Model
 {
-    protected $fillable = ['Empresa_Pasantias', 'Area_Pasantias', 'Tiempo_Pasantias',];
+    protected $fillable = ['nombre_empresa', 'area_trabajo', 'lugar_trabajo','fecha_inicio','fecha_finalización'];
 }

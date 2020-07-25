@@ -15,9 +15,12 @@ class CreateExperienciasTable extends Migration
     {
         Schema::create('experiencias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Empresa_Pasantias');
-            $table->string('Area_Pasantias');
-            $table->integer('Tiempo_Pasantias');
+            $table->string('nombre_empresa');
+            $table->string('area_trabajo');
+            $table->string('lugar_trabajo');
+            $table->date('fecha_inicio');
+            $table->date('fecha_finalización');
+
             $table->timestamps();
         });
     }
