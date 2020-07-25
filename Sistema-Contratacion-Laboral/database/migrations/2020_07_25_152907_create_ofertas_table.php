@@ -17,7 +17,7 @@ class CreateOfertasTable extends Migration
             $table->bigIncrements('id');
             $table->string('titulo_oferta');
             $table->string('descripcion_oferta');
-            $table->string('fecha_publicacion');
+            $table->date('fecha_publicacion');
 
             $table->timestamps();
         });

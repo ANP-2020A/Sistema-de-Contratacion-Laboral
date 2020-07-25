@@ -21,8 +21,7 @@ class OfertasTableSeeder extends Seeder
             Oferta::create([
                 'titulo_oferta' => $faker->text,
                 'descripcion_oferta' => $faker->paragraph,
-                'fecha_publicacion' => $faker->paragraph,
-
+                'fecha_publicacion' => $faker->dateTime,
             ]);
         }
     }
