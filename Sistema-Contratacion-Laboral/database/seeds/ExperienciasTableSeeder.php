@@ -19,9 +19,11 @@ class ExperienciasTableSeeder extends Seeder
 
         for ($i = 0; $i < 15; $i++) {
             Experiencia::create([
-                'Empresa_Pasantias' => $faker->name,
-                'Area_Pasantias' => $faker->text,
-                'Tiempo_Pasantias' => $faker->numberBetween(1,24)
+                'nombre_empresa' => $faker->name,
+                'area_trabajo' => $faker->text,
+                'lugar_trabajo' => $faker->text,
+                'fecha_inicio' => $faker->dateTime,
+                'fecha_finalización' => $faker->dateTime,
             ]);
         }
     }

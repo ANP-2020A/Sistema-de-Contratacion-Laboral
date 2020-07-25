@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOfertaEmpleosTable extends Migration
+class CreateOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateOfertaEmpleosTable extends Migration
      */
     public function up()
     {
-        Schema::create('oferta__empleos', function (Blueprint $table) {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Descripcion');
-            $table->integer('Vacantes');
+            $table->string('titulo_oferta');
+            $table->string('descripcion_oferta');
+            $table->string('fecha_publicacion');
+
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateOfertaEmpleosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oferta__empleos');
+        Schema::dropIfExists('ofertas');
     }
 }
