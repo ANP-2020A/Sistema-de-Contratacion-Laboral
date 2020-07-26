@@ -2,6 +2,7 @@
 
 use App\Oferta;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +13,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        schema::disableForeignKeyConstraints();
         $this->call(UsersTableSeeder::class);
         $this->call(ExperienciasTableSeeder::class);
         $this->call(EstudiosTableSeeder::class);
-        $this->call(OfertasTableSeeder::class);
         $this->call(AreaTrabajosTableSeeder::class);
+        $this->call(OfertasTableSeeder::class);
+        $this->call(PostulacionsTableSeeder::class);
+        schema::enableForeignKeyConstraints();
     }
 }
 

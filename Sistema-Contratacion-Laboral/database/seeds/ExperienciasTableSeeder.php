@@ -2,6 +2,7 @@
 
 use App\Experiencia;
 use Illuminate\Database\Seeder;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class ExperienciasTableSeeder extends Seeder
 {
@@ -15,16 +16,24 @@ class ExperienciasTableSeeder extends Seeder
         // Vaciar la tabla articles.
         Experiencia::truncate();
         $faker = \Faker\Factory::create();
-        // sesión con cada uno para crear Exp en su nombre
-
-        for ($i = 0; $i < 15; $i++) {
-            Experiencia::create([
-                'nombre_empresa' => $faker->name,
-                'area_trabajo' => $faker->text,
-                'lugar_trabajo' => $faker->text,
-                'fecha_inicio' => $faker->dateTime,
-                'fecha_finalización' => $faker->dateTime,
-            ]);
+        // Obtenemos la lista de todos los usuarios creados e
+        // iteramos sobre cada uno y simulamos un inicio de
+        // sesión con cada uno para crear artículos en su nombre
+        $users = App\User::all();
+        foreach ($users as $user) {
+            // iniciamos sesión con este usuario
+            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+            // Y ahora con este usuario creamos algunos articulos
+            $num_experiencias = 3;
+            for ($j = 0; $j < $num_experiencias; $j++) {
+                Experiencia::create([
+                    'nombre_empresa' => $faker->name,
+                    'area_trabajo' => $faker->text,
+                    'lugar_trabajo' => $faker->text,
+                    'fecha_inicio' => $faker->dateTime,
+                    'fecha_finalización' => $faker->dateTime,
+                ]);
+            }
         }
     }
 }

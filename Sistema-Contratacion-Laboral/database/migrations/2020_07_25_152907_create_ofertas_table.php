@@ -18,8 +18,8 @@ class CreateOfertasTable extends Migration
             $table->string('titulo_oferta');
             $table->string('descripcion_oferta');
             $table->date('fecha_publicacion');
-
             $table->timestamps();
+
         });
     }
 
