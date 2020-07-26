@@ -1,9 +1,10 @@
 <?php
 
+use App\Postulacion;
 use Illuminate\Database\Seeder;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class UserPostOfertasTableSeeder extends Seeder
+class PostulacionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,18 +13,21 @@ class UserPostOfertasTableSeeder extends Seeder
      */
     public function run()
     {
+        // Vaciamos la tabla comments
+        Postulacion::truncate();
         $faker = \Faker\Factory::create();
-        // Obtenemos todos las ofertas de empleo
+        // Obtenemos todos las ofertas de la bdd
         $ofertas = App\Oferta::all();
         // Obtenemos todos los usuarios
         $users = App\User::all();
         foreach ($users as $user) {
             // iniciamos sesión con cada uno
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
-            // Creamos un comentario para cada artículo con este usuario
+            // Creamos un postulacion con comentario para cada oferta con este usuario
             foreach ($ofertas as $oferta) {
-                Comment::create([
-                    'oferta_id' => $article->id,
+                Postulacion::create([
+                    'comentario' => $faker->text,
+                    'oferta_id' => $oferta->id,
                 ]);
             }
         }

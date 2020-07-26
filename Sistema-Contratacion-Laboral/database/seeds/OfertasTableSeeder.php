@@ -1,6 +1,5 @@
 <?php
 
-use App\AreaTrabajo;
 use App\Oferta;
 use Illuminate\Database\Seeder;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -28,7 +27,7 @@ class OfertasTableSeeder extends Seeder
             // Y ahora con este usuario creamos algunas ofertas
             foreach ($areas as $area) {
                 oferta::create([
-                    'titulo_oferta' => $faker->title,
+                    'titulo_oferta' => $faker->word,
                     'descripcion_oferta' => $faker->text,
                     'fecha_publicacion' => $faker->dateTime,
                     'area_id' => $area->id,
