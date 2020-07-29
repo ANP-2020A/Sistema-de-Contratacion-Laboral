@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Oferta;
 use Illuminate\Http\Request;
-use App\Http\Resources\Oferta as OfertaResources;
+use App\Http\Resources\Oferta as OfertaResource;
 use App\Http\Resources\OfertaCollection;
 
 
@@ -17,7 +17,7 @@ class OfertaController extends Controller
 
     public function show(Oferta $ofertaempleo)
     {
-        return response()->json(new OfertaResources($ofertaempleo),200);
+        return response()->json(new OfertaResource($ofertaempleo),200);
     }
 
     public function store(Request $request)
