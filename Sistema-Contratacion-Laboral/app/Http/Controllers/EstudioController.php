@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Estudio;
+use App\Http\Resources\Estudio as EstudioResource;
 use Illuminate\Http\Request;
 
 class EstudioController extends Controller
 {
     public function index()
     {
-        return Estudio::all();
+        return response()->json(EstudioResource::collection(Estudio::all()),200);
     }
 
     public function show(Estudio $estudios)
     {
-        return $estudios;
+        return response()->json(new EstudioResource($estudios),200);
     }
 
     public function store(Request $request)

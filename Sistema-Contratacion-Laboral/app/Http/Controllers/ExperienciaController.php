@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Experiencia;
+use App\Http\Resources\Experiencia as ExperienciaResource;
 use Illuminate\Http\Request;
 
 class ExperienciaController extends Controller
 {
     public function index()
     {
-        return Experiencia::all();
+        return response()->json(ExperienciaResource::collection(Experiencia::all()),200);
+
     }
 
     public function show(Experiencia $experiencias)
     {
-        return $experiencias;
+        return response()->json(new ExperienciaResource($experiencias),200);
     }
 
     public function store(Request $request)

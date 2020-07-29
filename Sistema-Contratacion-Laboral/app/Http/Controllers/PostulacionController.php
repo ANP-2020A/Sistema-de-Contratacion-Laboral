@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Postulacion;
 use Illuminate\Http\Request;
+use App\Http\Resources\Postulacion as PostulacionResource;
 
 class PostulacionController extends Controller
 {
     public function index()
     {
-        return Postulacion::all();
+        return response()->json(PostulacionResource::collection(Postulacion::all()),200);
     }
 
     public function show(Postulacion $postulacions)
     {
-        return $postulacions;
+        return response()->json(new PostulacionResource($postulacions),200);
     }
 
     public function store(Request $request)
