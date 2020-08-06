@@ -30,6 +30,7 @@ class OfertaController extends Controller
             'titulo_oferta' => 'required|string|unique:ofertas|max:255',
             'descripcion_oferta' => 'required|string',
             'fecha_publicacion' => 'required|date',
+            'link_google_forms' => 'required|url',
             'area_id'=>'required|exists:area_trabajos,id',
         ],self::$messages);
         $ofertaempleo = Oferta::create($request->all());
@@ -42,6 +43,7 @@ class OfertaController extends Controller
             'titulo_oferta' => 'required|string|unique:ofertas,titulo_oferta,'.$ofertaempleo->id.'|max:255',
             'descripcion_oferta' => 'required|string',
             'fecha_publicacion' => 'required|date',
+            'link_google_forms' => 'required|url',
             'area_id'=>'required|exists:area_trabajos,id',
         ],self::$messages);
         $ofertaempleo->update($request->all());
