@@ -27,11 +27,11 @@ class ExperienciasTableSeeder extends Seeder
             $num_experiencias = 3;
             for ($j = 0; $j < $num_experiencias; $j++) {
                 Experiencia::create([
-                    'nombre_empresa' => $faker->name,
-                    'area_trabajo' => $faker->text,
-                    'lugar_trabajo' => $faker->text,
-                    'fecha_inicio' => $faker->dateTime,
-                    'fecha_finalización' => $faker->dateTime,
+                    'nombre_empresa' => $faker->company,
+                    'area_trabajo' => $faker->streetName,
+                    'lugar_trabajo' => $faker->address,
+                    'fecha_inicio' => $faker->date('y-m-d'),
+                    'fecha_finalización' => $faker->date('y-m-d'),
                 ]);
             }
         }

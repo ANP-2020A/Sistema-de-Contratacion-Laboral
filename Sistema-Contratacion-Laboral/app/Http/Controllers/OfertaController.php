@@ -10,6 +10,10 @@ use App\Http\Resources\OfertaCollection;
 
 class OfertaController extends Controller
 {
+    public static $messages = [
+        'required'=>'El campo :attribute es obligatorio.',
+        //'body.required'=>'El body no es valido',
+    ];
     public function index()
     {
         return new OfertaCollection(Oferta::paginate(10));
@@ -22,13 +26,24 @@ class OfertaController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'titulo_oferta' => 'required|string|unique:ofertas|max:255',
+            'descripcion_oferta' => 'required|string',
+            'fecha_publicacion' => 'required|date',
+            'area_id'=>'required|exists:area_trabajos,id',
+        ],self::$messages);
         $ofertaempleo = Oferta::create($request->all());
         return response()->json($ofertaempleo, 201);
     }
 
     public function update(Request $request, Oferta $ofertaempleo)
     {
-
+        $request->validate([
+            'titulo_oferta' => 'required|string|unique:ofertas,titulo_oferta,'.$ofertaempleo->id.'|max:255',
+            'descripcion_oferta' => 'required|string',
+            'fecha_publicacion' => 'required|date',
+            'area_id'=>'required|exists:area_trabajos,id',
+        ],self::$messages);
         $ofertaempleo->update($request->all());
         return response()->json($ofertaempleo, 200);
     }
