@@ -17,6 +17,7 @@ class Postulacion extends JsonResource
         return [
             'id' => $this->id,
             'comentario'=>$this->comentario,
+            'fecha_postulacion'=>$this->fecha_postulacion,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'user '=>"/api/users/".$this->user_id,

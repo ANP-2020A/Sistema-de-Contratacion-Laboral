@@ -18,6 +18,7 @@ class CreateOfertasTable extends Migration
             $table->string('titulo_oferta');
             $table->text('descripcion_oferta');
             $table->date('fecha_publicacion');
+            $table->string('link_google_forms');
             $table->timestamps();
 
         });

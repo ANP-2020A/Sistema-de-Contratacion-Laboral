@@ -30,6 +30,7 @@ class OfertasTableSeeder extends Seeder
                     'titulo_oferta' => $faker->sentence,
                     'descripcion_oferta' => $faker->paragraph,
                     'fecha_publicacion' => $faker->date('y-m-d'),
+                    'link_google_forms' => $faker->url,
                     'area_id' => $area->id,
                 ]);
             }
