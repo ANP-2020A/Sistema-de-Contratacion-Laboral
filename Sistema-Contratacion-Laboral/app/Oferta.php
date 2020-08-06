@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Oferta extends Model
 {
-    protected $fillable = ['titulo_oferta','descripcion_oferta', 'fecha_publicacion','area_id'];
+    protected $fillable = ['titulo_oferta','descripcion_oferta', 'fecha_publicacion','link_google_forms','area_id'];
 
     public static function boot(){
         parent::boot();
