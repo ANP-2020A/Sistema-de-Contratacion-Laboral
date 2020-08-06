@@ -27,9 +27,9 @@ class OfertasTableSeeder extends Seeder
             // Y ahora con este usuario creamos algunas ofertas
             foreach ($areas as $area) {
                 oferta::create([
-                    'titulo_oferta' => $faker->word,
-                    'descripcion_oferta' => $faker->text,
-                    'fecha_publicacion' => $faker->dateTime,
+                    'titulo_oferta' => $faker->sentence,
+                    'descripcion_oferta' => $faker->paragraph,
+                    'fecha_publicacion' => $faker->date('y-m-d'),
                     'area_id' => $area->id,
                 ]);
             }

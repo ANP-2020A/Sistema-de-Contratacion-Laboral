@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
             'password' => $password,
         ]);
         // Generar algunos usuarios para nuestra aplicacion
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             User::create([
                 'name' => $faker->name,
                 'email' => $faker->email,

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class ExperienciaController extends Controller
 {
+    public static $messages = [
+        'required'=>'El campo :attribute es obligatorio.',
+        //'body.required'=>'El body no es valido',
+    ];
     public function index()
     {
         return response()->json(ExperienciaResource::collection(Experiencia::all()),200);
@@ -21,13 +25,26 @@ class ExperienciaController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_empresa' => 'required|string|max:255',
+            'area_trabajo' => 'required|string',
+            'lugar_trabajo' => 'required|string',
+            'fecha_inicio' => 'required|date',
+            'fecha_finalización' => 'required|date',
+        ],self::$messages);
         $experiencias = Experiencia::create($request->all());
         return response()->json($experiencias, 201);
     }
 
     public function update(Request $request, Experiencia $experiencias)
     {
-
+        $request->validate([
+            'nombre_empresa' => 'required|string|max:255',
+            'area_trabajo' => 'required|string|max:200',
+            'lugar_trabajo' => 'required|string',
+            'fecha_inicio' => 'required|date',
+            'fecha_finalización' => 'required|date',
+        ],self::$messages);
         $experiencias->update($request->all());
         return response()->json($experiencias, 200);
     }

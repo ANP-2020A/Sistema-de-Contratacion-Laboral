@@ -24,29 +24,29 @@ Route::post('login', 'UserController@authenticate');
 Route::get('oferta', 'OfertaController@index');
 Route::group(['middleware' => ['jwt.verify']], function() {
     //ofertas
-    Route::get('oferta', 'OfertaController@index');
-    Route::get('oferta/{ofertaempleo}', 'OfertaController@show');
-    Route::post('oferta', 'OfertaController@store');
-    Route::put('oferta/{ofertaempleo}', 'OfertaController@update');
-    Route::delete('oferta/{ofertaempleo}', 'OfertaController@delete');
+    Route::get('ofertas', 'OfertaController@index');
+    Route::get('ofertas/{ofertaempleo}', 'OfertaController@show');
+    Route::post('ofertas', 'OfertaController@store');
+    Route::put('ofertas/{ofertaempleo}', 'OfertaController@update');
+    Route::delete('ofertas/{ofertaempleo}', 'OfertaController@delete');
     //experiencias
-    Route::get('experiencia', 'ExperienciaController@index');
-    Route::get('experiencia/{experiencias}', 'ExperienciaController@show');
-    Route::post('experiencia', 'ExperienciaController@store');
-    Route::put('experiencia/{experiencias}', 'ExperienciaController@update');
-    Route::delete('experiencia/{experiencias}', 'ExperienciaController@delete');
+    Route::get('experiencias', 'ExperienciaController@index');
+    Route::get('experiencias/{experiencias}', 'ExperienciaController@show');
+    Route::post('experiencias', 'ExperienciaController@store');
+    Route::put('experiencias/{experiencias}', 'ExperienciaController@update');
+    Route::delete('experiencias/{experiencias}', 'ExperienciaController@delete');
     //estudios
-    Route::get('estudio', 'EstudioController@index');
-    Route::get('estudio/{estudios}', 'EstudioController@show');
-    Route::post('estudio', 'EstudioController@store');
-    Route::put('estudio/{estudios}', 'EstudioController@update');
-    Route::delete('estudio/{estudios}', 'EstudioController@delete');
+    Route::get('estudios', 'EstudioController@index');
+    Route::get('estudios/{estudios}', 'EstudioController@show');
+    Route::post('estudios', 'EstudioController@store');
+    Route::put('estudios/{estudios}', 'EstudioController@update');
+    Route::delete('estudios/{estudios}', 'EstudioController@delete');
     //Postulaciones
-    Route::get('postulacion', 'PostulacionController@index');
-    Route::get('postulacion/{postulacions}', 'PostulacionController@show');
-    Route::post('postulacion', 'PostulacionController@store');
-    Route::put('postulacion/{postulacions}', 'PostulacionController@update');
-    Route::delete('postulacion/{postulacions}', 'PostulacionController@delete');
+    Route::get('postulacions', 'PostulacionController@index');
+    Route::get('postulacions/{postulacions}', 'PostulacionController@show');
+    Route::post('postulacions', 'PostulacionController@store');
+    Route::put('postulacions/{postulacions}', 'PostulacionController@update');
+    Route::delete('postulacions/{postulacions}', 'PostulacionController@delete');
 });
 
 

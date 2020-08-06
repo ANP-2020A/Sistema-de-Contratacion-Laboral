@@ -26,7 +26,8 @@ class PostulacionsTableSeeder extends Seeder
             // Creamos un postulacion con comentario para cada oferta con este usuario
             foreach ($ofertas as $oferta) {
                 Postulacion::create([
-                    'comentario' => $faker->text,
+                    'comentario' => $faker->paragraph,
+                    'fecha_postulacion'=>$faker->date('y-m-d'),
                     'oferta_id' => $oferta->id,
                 ]);
             }

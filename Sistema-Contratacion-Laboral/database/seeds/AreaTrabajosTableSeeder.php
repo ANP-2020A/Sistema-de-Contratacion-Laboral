@@ -16,9 +16,9 @@ class AreaTrabajosTableSeeder extends Seeder
         AreaTrabajo::truncate();
         $faker = \Faker\Factory::create();
         // Crear artículos ficticios en la tabla
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 7; $i++) {
             AreaTrabajo::create([
-                'area_trabajo' => $faker->text,
+                'area_trabajo' => $faker->streetName,
             ]);
         }
     }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Postulacion extends Model
 {
-    protected $fillable = ['comentario','oferta_id'];
+    protected $fillable = ['comentario','fecha_postulacion','oferta_id'];
 
     public static function boot(){
         parent::boot();

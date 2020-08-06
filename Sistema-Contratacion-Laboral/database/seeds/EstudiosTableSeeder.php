@@ -27,11 +27,11 @@ class EstudiosTableSeeder extends Seeder
             $num_estudios = 3;
             for ($j = 0; $j < $num_estudios; $j++) {
                 Estudio::create([
-                    'institucion' => $faker->text,
-                    'nivel' => $faker->text,
-                    'nivel_ingles' => $faker->text,
-                    'fecha_inicio' => $faker->dateTime,
-                    'fecha_finalización' => $faker->dateTime,
+                    'institucion' => $faker->sentence,
+                    'nivel' => $faker->word,
+                    'nivel_ingles' => $faker->word,
+                    'fecha_inicio' => $faker->date('y-m-d'),
+                    'fecha_finalización' => $faker->date('y-m-d'),
                 ]);
             }
         }
