@@ -57,4 +57,8 @@ class User extends Authenticatable  implements JWTSubject
     public function postulacion(){
         return $this->hasMany('App\Postulacion');
     }
+    public function userable()
+    {
+        return $this->morphTo();
+    }
 }

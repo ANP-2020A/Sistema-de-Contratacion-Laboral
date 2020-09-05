@@ -12,7 +12,6 @@ class OfertaController extends Controller
 {
     public static $messages = [
         'required'=>'El campo :attribute es obligatorio.',
-        //'body.required'=>'El body no es valido',
     ];
     public function index()
     {

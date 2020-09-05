@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Experiencia;
 use App\Http\Resources\Experiencia as ExperienciaResource;
+use App\User;
 use Illuminate\Http\Request;
 
 class ExperienciaController extends Controller
 {
     public static $messages = [
         'required'=>'El campo :attribute es obligatorio.',
-        //'body.required'=>'El body no es valido',
     ];
-    public function index()
+    public function index(User $user)
     {
-        return response()->json(ExperienciaResource::collection(Experiencia::all()),200);
+        return response()->json(ExperienciaResource::collection($user->Experiencia),200);
 
     }
 

@@ -11,7 +11,7 @@ use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Resources\User as UserResource;
 
-class UserController extends Controller
+class EmpresaController extends Controller
 {
     public function authenticate(Request $request)
     {
@@ -31,33 +31,33 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'nombre' => 'required|string',
-            'apellido' => 'required|string',
-            'cedula' => 'required|string',
-            'provincia' => 'required|string',
-            'genero' => 'required|string',
-            'nacionalidad' => 'required|string'
+            'empresa' => 'required|string',
+            'ruc_cedula' => 'required|string',
+            'celular' => 'required|string',
+            'sector' => 'required|string',
+            'ubicacion' => 'required|string',
+            'actividad' => 'required|string',
+
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);
         }
-
-        $Postulante = Postulante::create([
-            'nombre' => $request->get('nombre'),
-            'apellido' => $request->get('apellido'),
-            'cedula' => $request->get('cedula'),
+        $Empresa = Empresa::create([
+            'empresa' => $request->get('empresa'),
+            'ruc_cedula' => $request->get('ruc_cedula'),
             'celular' => $request->get('celular'),
-            'provincia' => $request->get('provincia'),
-            'genero' => $request->get('genero'),
-            'nacionalidad' => $request->get('nacionalidad'),
+            'sector' => $request->get('sector'),
+            'ubicacion' => $request->get('ubicacion'),
+            'actividad' => $request->get('actividad'),
         ]);
 
-        $Postulante->user()->create([
+        $Empresa->user()->create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
         ]);
-        $user = $Postulante->user;
+
+        $user = $Empresa->user;
         $token = JWTAuth::fromUser($user);
 
         $user_resource=new UserResource($user);
@@ -80,3 +80,4 @@ class UserController extends Controller
         return response()->json(new UserResource($user, 200));
     }
 }
+
