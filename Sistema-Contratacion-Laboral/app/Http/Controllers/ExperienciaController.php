@@ -14,7 +14,8 @@ class ExperienciaController extends Controller
     ];
     public function index(User $user)
     {
-        return response()->json(ExperienciaResource::collection($user->Experiencia),200);
+        return response()->json(ExperienciaResource::collection(Experiencia::all()),200);
+        //return response()->json(ExperienciaResource::collection($user->Experiencia),200);
 
     }
 
