@@ -24,7 +24,7 @@ class PostulanteMiddleware
     {
         switch ($this->auth->user()->userable_type)
         {
-            case 'Admin':
+            case 'Role_Empresa':
                 # Admin
                 return redirect()->to('Admin');
                 break;
@@ -32,7 +32,7 @@ class PostulanteMiddleware
                 # Empresa
                 return redirect()->to('Empresa');
                 break;
-            case 'App\Postulante':
+            case 'Roml':
                 # Postulante
                 //return redirect()->to('Postulante');
                 break;

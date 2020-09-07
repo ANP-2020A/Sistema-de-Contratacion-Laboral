@@ -21,11 +21,11 @@ class OfertasTableSeeder extends Seeder
         // Obtenemos la lista de todos los usuarios creados e
         // iteramos sobre cada uno y simulamos un inicio de
         // sesión con cada uno para crear ofertas en su nombre
-        $users = Empresa::all();
+        $Empresas = Empresa::all();
         $areas = AreaTrabajo::all();
-        foreach ($users as $user) {
+        foreach ($Empresas as $Empresa) {
             // iniciamos sesión con este usuario
-            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+            JWTAuth::attempt(['email' => $Empresa->email, 'password' => '123123']);
             // Y ahora con este usuario creamos algunas ofertas
             foreach ($areas as $area) {
                 oferta::create([

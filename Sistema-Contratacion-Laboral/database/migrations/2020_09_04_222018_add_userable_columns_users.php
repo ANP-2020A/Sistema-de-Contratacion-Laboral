@@ -15,8 +15,9 @@ class AddUserableColumnsUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table)
         {
-            $table->integer('userable_id')->nullable();
-            $table->string('userable_type')->nullable();
+            $table->integer('userable_id');
+            $table->string('userable_type');
+            $table->string('role');
         });
     }
 
@@ -31,6 +32,7 @@ class AddUserableColumnsUsers extends Migration
         {
             $table->dropColumn('userable_id');
             $table->dropColumn('userable_type');
+            $table->dropColumn('role');
         });
     }
 }

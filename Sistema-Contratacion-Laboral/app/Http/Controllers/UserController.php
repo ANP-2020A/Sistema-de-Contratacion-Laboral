@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Empresa;
 use App\Postulante;
 use App\User;
@@ -17,7 +18,7 @@ class UserController extends Controller
     {
         $credentials = $request->only('email', 'password');
         try {
-            if (! $token = JWTAuth::attempt($credentials)) {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 400);
             }
         } catch (JWTException $e) {
@@ -25,49 +26,31 @@ class UserController extends Controller
         }
         return response()->json(compact('token'));
     }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'nombre' => 'required|string',
-            'apellido' => 'required|string',
-            'cedula' => 'required|string',
-            'provincia' => 'required|string',
-            'genero' => 'required|string',
-            'nacionalidad' => 'required|string'
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
         }
 
-        $Postulante = Postulante::create([
-            'nombre' => $request->get('nombre'),
-            'apellido' => $request->get('apellido'),
-            'cedula' => $request->get('cedula'),
-            'celular' => $request->get('celular'),
-            'provincia' => $request->get('provincia'),
-            'genero' => $request->get('genero'),
-            'nacionalidad' => $request->get('nacionalidad'),
-        ]);
-
-        $Postulante->user()->create([
+        $user = User::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => Hash::make($request->get('password')),
         ]);
-        $user = $Postulante->user;
         $token = JWTAuth::fromUser($user);
-
-        $user_resource=new UserResource($user);
-        $user_resource->token($token);
-        return response()->json($user_resource,201);
+        return response()->json(compact('user','token'),201);
     }
+
     public function getAuthenticatedUser()
     {
         try {
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
         } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
