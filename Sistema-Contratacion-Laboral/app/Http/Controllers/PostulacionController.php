@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Postulacion;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Postulacion as PostulacionResource;
 
@@ -12,9 +13,10 @@ class PostulacionController extends Controller
         'required'=>'El campo :attribute es obligatorio.',
         //'body.required'=>'El body no es valido',
     ];
-    public function index()
+    public function index(User $user)
     {
-        return response()->json(PostulacionResource::collection(Postulacion::all()),200);
+        return response()->json(PostulacionResource::collection($user->Postulacion),200);
+        //return response()->j  son(PostulacionResource::collection(Postulacion::all()),200);
     }
 
     public function show(Postulacion $postulacions)
