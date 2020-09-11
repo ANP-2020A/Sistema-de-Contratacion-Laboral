@@ -19,6 +19,7 @@ class EmpresaController extends Controller
     }
     public function show(Empresa $empresa)
     {
+        $this->authorize('view', $empresa);
         return response()->json(new EmpresaResource($empresa), 200);
     }
     public function store(Request $request)
@@ -37,6 +38,7 @@ class EmpresaController extends Controller
     }
     public function update(Request $request, Empresa $empresa)
     {
+        $this->authorize('update', $empresa);
         $request->validate([
             'empresa' => 'required|string',
             'ruc_cedula' => 'required|string',
@@ -51,6 +53,7 @@ class EmpresaController extends Controller
     }
     public function delete(Empresa $empresa)
     {
+        $this->authorize('delete', $empresa);
         $empresa->delete();
         return response()->json(null, 204);
     }

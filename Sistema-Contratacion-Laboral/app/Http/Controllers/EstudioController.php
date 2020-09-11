@@ -19,11 +19,13 @@ class EstudioController extends Controller
 
     public function show(Estudio $estudios)
     {
+        $this->authorize('view',$estudios);
         return response()->json(new EstudioResource($estudios),200);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create',Estudio::class);
         $request->validate([
             'institucion' => 'required|string|max:255',
             'nivel' => 'required|string',
@@ -37,6 +39,7 @@ class EstudioController extends Controller
 
     public function update(Request $request, Estudio $estudios)
     {
+        $this->authorize('update',$estudios);
         $request->validate([
             'institucion' => 'required|string|max:255',
             'nivel' => 'required|string',
@@ -50,6 +53,7 @@ class EstudioController extends Controller
 
     public function delete(Request $request, Estudio $estudios)
     {
+        $this->authorize('update',$estudios);
         $estudios->delete();
         return response()->json(null, 204);
     }

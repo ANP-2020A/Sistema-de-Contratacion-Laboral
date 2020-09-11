@@ -21,11 +21,13 @@ class ExperienciaController extends Controller
 
     public function show(Experiencia $experiencias)
     {
+        $this->authorize('view',Experiencia::class);
         return response()->json(new ExperienciaResource($experiencias),200);
     }
 
     public function store(Request $request)
     {
+        $this->authorize('create',Experiencia::class);
         $request->validate([
             'nombre_empresa' => 'required|string|max:255',
             'area_trabajo' => 'required|string',
@@ -39,6 +41,7 @@ class ExperienciaController extends Controller
 
     public function update(Request $request, Experiencia $experiencias)
     {
+        $this->authorize('update',$experiencias);
         $request->validate([
             'nombre_empresa' => 'required|string|max:255',
             'area_trabajo' => 'required|string|max:200',
@@ -52,6 +55,7 @@ class ExperienciaController extends Controller
 
     public function delete(Request $request, Experiencia $experiencias)
     {
+        $this->authorize('delete',$experiencias);
         $experiencias->delete();
         return response()->json(null, 204);
     }
