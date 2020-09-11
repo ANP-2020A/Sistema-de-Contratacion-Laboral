@@ -19,6 +19,7 @@ class PostulanteController extends Controller
     }
     public function show(Postulante $postulante)
     {
+        $this->authorize('view', $postulante);
         return response()->json(new PostulanteResource($postulante), 200);
     }
     public function store(Request $request)
@@ -37,6 +38,7 @@ class PostulanteController extends Controller
     }
     public function update(Request $request, Postulante $postulante)
     {
+        $this->authorize('update', $postulante);
         $request->validate([
             'nombre' => 'required|string',
             'apellido' => 'required|string',
@@ -51,6 +53,7 @@ class PostulanteController extends Controller
     }
     public function delete(Postulante $postulante)
     {
+        $this->authorize('delete', $postulante);
         $postulante->delete();
         return response()->json(null, 204);
     }

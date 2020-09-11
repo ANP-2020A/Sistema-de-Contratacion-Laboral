@@ -27,7 +27,7 @@ class OfertaPolicy
 
     public function viewAny(User $user)
     {
-        return $user->isGranted(User::ROLE_EMPRESA);
+        //return $user->isGranted(User::ROLE_EMPRESA);
 
     }
 
@@ -51,7 +51,6 @@ class OfertaPolicy
 
     public function delete(User $user, Oferta $oferta)
     {
-        return $user->isGranted(User::ROLE_POSTULANTE);
-
+        return ($user->isGranted(User::ROLE_EMPRESA || $user->isGranted(User::ROLE_ADMIN)));
     }
 }

@@ -22,8 +22,10 @@ class Oferta extends JsonResource
             'link_google_forms'=>$this->link_google_forms,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            //'user_data' => $this->user,
             'user'=>"/api/users/".$this->user_id,
             'area '=>"/api/area_trabajos/".$this->area_id,
+            //'category_data' => $this->category,
         ];
     }
 }
