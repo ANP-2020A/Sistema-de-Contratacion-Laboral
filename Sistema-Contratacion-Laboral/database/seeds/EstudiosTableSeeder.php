@@ -20,6 +20,7 @@ class EstudiosTableSeeder extends Seeder
         // iteramos sobre cada uno y simulamos un inicio de
         // sesión con cada uno para crear artículos en su nombre
         $users = App\User::all();
+
         foreach ($users as $user) {
             // iniciamos sesión con este usuario
             JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
@@ -32,6 +33,7 @@ class EstudiosTableSeeder extends Seeder
                     'nivel_ingles' => $faker->word,
                     'fecha_inicio' => $faker->date('y-m-d'),
                     'fecha_finalización' => $faker->date('y-m-d'),
+                    'postulante_id'=>$faker->numberBetween(1,5)
                 ]);
             }
         }

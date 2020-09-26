@@ -20,6 +20,7 @@ class Oferta extends JsonResource
             'descripcion_oferta'=>$this->descripcion_oferta,
             'fecha_publicacion'=>$this->fecha_publicacion,
             'link_google_forms'=>$this->link_google_forms,
+            'image'=>$this->image,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             //'user_data' => $this->user,

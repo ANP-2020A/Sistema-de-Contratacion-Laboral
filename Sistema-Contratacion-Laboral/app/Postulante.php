@@ -13,4 +13,20 @@ class Postulante extends Model
     {
         return $this->morphOne('App\User', 'userable');
     }
+
+    public function postulacion()
+    {
+        return $this->hasMany('App\Postulacion');
+    }
+
+    public function experiencia()
+    {
+        return $this->hasMany('App\Experiencia');
+    }
+
+    public function estudio()
+    {
+        return $this->hasMany('App\Estudio');
+    }
+
 }

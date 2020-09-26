@@ -12,11 +12,11 @@ class Experiencia extends Model
     public static function boot(){
         parent::boot();
         static::creating(function ($experiencia) {
-            $experiencia->user_id = Auth::id();
+            //$experiencia->user_id = Auth::id();
         });
     }
 
-    public function user(){
-        return $this->belongsTo('App\User');
+    public function Postulante(){
+        return $this->belongsTo('App\Postulante','postulante_id');
     }
 }

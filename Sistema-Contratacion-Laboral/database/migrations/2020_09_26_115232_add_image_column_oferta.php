@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdColumnExperiencia extends Migration
+class AddImageColumnOferta extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddUserIdColumnExperiencia extends Migration
      */
     public function up()
     {
-        Schema::table('experiencias', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
+        Schema::table('ofertas', function (Blueprint $table)
+        {
+            $table->string('image');
         });
     }
 
@@ -26,8 +26,9 @@ class AddUserIdColumnExperiencia extends Migration
      */
     public function down()
     {
-        Schema::table('experiencias', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
+        Schema::table('ofertas', function (Blueprint $table)
+        {
+            $table->dropColumn('image');
         });
     }
 }

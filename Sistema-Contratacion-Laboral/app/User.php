@@ -80,26 +80,6 @@ class User extends Authenticatable implements JWTSubject
         return false;
     }
 
-    public function oferta()
-    {
-        return $this->hasMany('App\Oferta');
-    }
-
-    public function experiencia()
-    {
-        return $this->hasMany('App\Experiencia');
-    }
-
-    public function estudio()
-    {
-        return $this->hasMany('App\Estudio');
-    }
-
-    public function postulacion()
-    {
-        return $this->hasMany('App\Postulacion');
-    }
-
     public function userable()
     {
         return $this->morphTo();

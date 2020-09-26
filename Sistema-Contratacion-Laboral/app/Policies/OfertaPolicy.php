@@ -33,7 +33,17 @@ class OfertaPolicy
 
     public function view(User $user, Oferta $oferta)
     {
-        return $user->userable_id === $oferta->user_id|| $user->isGranted(User::ROLE_EMPRESA);
+        //return $user->userable_id+1 === $oferta->user_id || $user->isGranted(User::ROLE_EMPRESA);
+        if ($user->userable->id === $oferta->user_id && $user->isGranted(User::ROLE_EMPRESA)) {
+            return true;
+        } else {
+            foreach ($oferta->students as $student) {
+                if ($student->id === $user->id && $user->isGranted(User::ROLE_STUDENT)) {
+                    return true;
+                }
+            }
+        }
+        return false;
 
     }
 

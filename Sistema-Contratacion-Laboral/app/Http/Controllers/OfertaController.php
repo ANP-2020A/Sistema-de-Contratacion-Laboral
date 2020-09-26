@@ -37,10 +37,17 @@ class OfertaController extends Controller
             'fecha_publicacion' => 'required|date',
             'link_google_forms' => 'required|url',
             'area_id' => 'required|exists:area_trabajos,id',
+            'image' => 'required|image|dimensions:min_width=200,min_height=200',
         ], self::$messages);
 
-        $ofertaempleo = Oferta::create($request->all());
-        return response()->json($ofertaempleo, 201);
+        $ofertaempleo = new Oferta($request->all());
+        $path = $request->image->store('public/ofertas');
+
+        $ofertaempleo->image = $path;
+        $ofertaempleo->save();
+
+        //$ofertaempleo = Oferta::create($request->all());
+        return response()->json(new OfertaResource($ofertaempleo), 201);
     }
 
     public function update(Request $request, Oferta $ofertaempleo)

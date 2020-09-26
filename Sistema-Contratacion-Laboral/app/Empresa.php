@@ -9,8 +9,10 @@ class Empresa extends Model
     protected $fillable = ['empresa','ruc_cedula','celular','sector','ubicacion','actividad'];
     public $timestamps=false;
 
-    public function user()
-    {
+    public function Oferta(){
+        return $this->belongsToMany('App\Oferta')->withTimestamps();
+    }
+    public function user(){
         return $this->morphOne('App\User', 'userable');
     }
 }

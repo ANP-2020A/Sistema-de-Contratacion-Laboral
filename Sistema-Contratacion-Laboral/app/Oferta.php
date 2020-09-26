@@ -12,21 +12,17 @@ class Oferta extends Model
     public static function boot(){
         parent::boot();
         static::creating(function ($ofertaempleo) {
-            $ofertaempleo->user_id = Auth::id();
+            //$ofertaempleo->empresa_id = Auth::id();
         });
     }
 
-    public function user(){
-        return $this->belongsTo('App\User');
-    }
     public function AreaTrabajo(){
         return $this->belongsTo('App\AreaTrabajo');
     }
     public function postulacion(){
-        return $this->hasMany('App\Postulacion');
+        return $this->hasMany('App\Postulacion')->withTimestamps();
     }
-    public function users(){
-        return $this->belongsToMany('App\User')->as('subscriptions')->withTimestamps();
+    public function Empresa(){
+        return $this->belongsTo('App\Empresa','user_id');
     }
-
 }
