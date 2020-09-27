@@ -6,11 +6,15 @@ use App\Empresa;
 use App\Postulante;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use App\Http\Resources\User as UserResource;
+use Tymon\JWTAuth\JWTGuard;
+
+
 
 class UserController extends Controller
 {
