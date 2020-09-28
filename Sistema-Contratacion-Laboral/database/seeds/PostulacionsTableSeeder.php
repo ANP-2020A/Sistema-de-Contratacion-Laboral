@@ -21,16 +21,17 @@ class PostulacionsTableSeeder extends Seeder
         // Obtenemos todos los usuarios
         $users = App\Postulante::all();
         foreach ($users as $user) {
-            // iniciamos sesión con cada uno
-            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
-            // Creamos un postulacion con postulacion para cada oferta con este usuario
-            foreach ($ofertas as $oferta) {
-                Postulacion::create([
-                    'comentario' => $faker->paragraph,
-                    'fecha_postulacion'=>$faker->date('y-m-d'),
-                    'oferta_id' => $oferta->id,
-                ]);
-            }
+                // iniciamos sesión con cada uno
+                JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+                // Creamos un postulacion con postulacion para cada oferta con este usuario
+                foreach ($ofertas as $oferta) {
+                    Postulacion::create([
+                        'comentario' => $faker->paragraph,
+                        'oferta_id' => $oferta->id,
+                        'postulante_id'=>$faker->numberBetween(1,5)
+                    ]);
+                }
+
         }
     }
 }

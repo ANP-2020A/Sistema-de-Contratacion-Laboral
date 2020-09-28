@@ -7,22 +7,22 @@ use Illuminate\Support\Facades\Auth;
 
 class Postulacion extends Model
 {
-    protected $fillable = ['comentario','fecha_postulacion','oferta_id'];
+    protected $fillable = ['comentario'];
 
     public static function boot(){
         parent::boot();
         static::creating(function ($postulacion) {
-            $postulacion->user_id = Auth::id();
+            //$postulacion->postulante_id = Auth::id();
         });
     }
 
-    public function user()
+    public function Postulante()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Postulante','postulante_id');
     }
 
-    public function oferta()
+    public function Oferta()
     {
-        return $this->belongsTo('App\Oferta');
+        return $this->belongsTo('App\Oferta','oferta_id');
     }
 }

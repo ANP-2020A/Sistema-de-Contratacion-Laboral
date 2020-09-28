@@ -20,10 +20,11 @@ class Experiencia extends JsonResource
             'area_trabajo'=>$this->area_trabajo,
             'lugar_trabajo'=>$this->lugar_trabajo,
             'fecha_inicio'=>$this->fecha_inicio,
-            'fecha_finalización'=>$this->fecha_finalización,
+            'fecha_finalizacion'=>$this->fecha_finalización,
+            'postulante' => '/api/postulantes/' . $this->postulante_id,
+            'nombre_postulante' => $this->postulante->nombre,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'user '=>"/api/users/".$this->user_id,
         ];
     }
 }

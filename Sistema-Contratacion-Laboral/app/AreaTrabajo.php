@@ -8,7 +8,8 @@ class AreaTrabajo extends Model
 {
     protected $fillable = ['area_trabajo'];
 
-    public function oferta(){
+    public function Oferta()
+    {
         return $this->hasMany('App\Oferta');
     }
 }

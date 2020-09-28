@@ -29,7 +29,7 @@ class EstudioController extends Controller
         $request->validate([
             'institucion' => 'required|string|max:255',
             'nivel' => 'required|string',
-            'nivel_ingles' => 'nullable|string|20',
+            'nivel_ingles' => 'nullable|string',
             'fecha_inicio' => 'required|date',
             'fecha_finalización' => 'required|date',
         ],self::$messages);

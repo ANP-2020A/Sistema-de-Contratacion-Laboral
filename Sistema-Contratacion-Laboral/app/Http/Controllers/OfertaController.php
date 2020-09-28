@@ -17,14 +17,18 @@ class OfertaController extends Controller
     public function index()
     {
         //$this->authorize('viewAny', Oferta::class);
-        return new OfertaCollection(Oferta::paginate(10));
+        return new OfertaCollection(Oferta::paginate(50));
     }
 
     public function show(Oferta $ofertaempleo)
     {
-        $this->authorize('view', $ofertaempleo);
+        //$this->authorize('view', $ofertaempleo);
 
         return response()->json(new OfertaResource($ofertaempleo), 200);
+    }
+    public function image(Oferta $ofertaempleo)
+    {
+        return response()->download(public_path(Storage::url($ofertaempleo->image)), $ofertaempleo->title);
     }
 
     public function store(Request $request)
@@ -37,10 +41,17 @@ class OfertaController extends Controller
             'fecha_publicacion' => 'required|date',
             'link_google_forms' => 'required|url',
             'area_id' => 'required|exists:area_trabajos,id',
+            'image' => 'required|image|dimensions:min_width=200,min_height=200',
         ], self::$messages);
 
-        $ofertaempleo = Oferta::create($request->all());
-        return response()->json($ofertaempleo, 201);
+        $ofertaempleo = new Oferta($request->all());
+        $path = $request->image->store('public/ofertas');
+
+        $ofertaempleo->image = 'ofertas/' . basename($path);
+        $ofertaempleo->save();
+
+        //$ofertaempleo = Oferta::create($request->all());
+        return response()->json(new OfertaResource($ofertaempleo), 201);
     }
 
     public function update(Request $request, Oferta $ofertaempleo)

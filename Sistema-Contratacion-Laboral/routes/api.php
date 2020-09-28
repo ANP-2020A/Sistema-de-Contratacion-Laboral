@@ -22,14 +22,17 @@ Route::group(['middleware' => ['cors']], function () {
     Route::post('register', 'UserController@register');
     Route::post('login', 'UserController@authenticate');
     Route::get('ofertas', 'OfertaController@index');
+    Route::get('areas', 'TrabajosController@index');
     Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('user', 'UserController@getAuthenticatedUser');
+        Route::post('logout', 'UserController@logout');
 
         //Route::group(['middleware' => ['jwt.verify', 'empresa'], 'prefix' => 'empresa'], function () {
         //});
+        #Area Trabajos
         #ofertas
         //Route::get('ofertas', 'OfertaController@index');
-        Route::get('ofertas/{ofertaempleo}', 'OfertaController@show');
+        Route::get('oferta/{ofertaempleo}', 'OfertaController@show');
         Route::post('ofertas', 'OfertaController@store');
         Route::put('ofertas/{ofertaempleo}', 'OfertaController@update');
         Route::delete('ofertas/{ofertaempleo}', 'OfertaController@delete');
@@ -50,7 +53,7 @@ Route::group(['middleware' => ['cors']], function () {
         Route::delete('estudios/{estudios}', 'EstudioController@delete');
 
         #Postulaciones
-        Route::get('user/postulacions', 'PostulacionController@index');
+        Route::get('postulacions', 'PostulacionController@index');
         Route::get('postulacions/{postulacions}', 'PostulacionController@show');
         Route::post('postulacions', 'PostulacionController@store');
         Route::put('postulacions/{postulacions}', 'PostulacionController@update');

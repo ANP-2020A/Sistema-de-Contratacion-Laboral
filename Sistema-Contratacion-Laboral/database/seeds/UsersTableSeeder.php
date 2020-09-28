@@ -17,6 +17,8 @@ class UsersTableSeeder extends Seeder
     {
         // Vaciar la tabla
         User::truncate();
+        Postulante::truncate();
+        Empresa::truncate();
         $faker = \Faker\Factory::create();
         // Crear la misma clave para todos los usuarios
         // conviene hacerlo antes del for para que el seeder

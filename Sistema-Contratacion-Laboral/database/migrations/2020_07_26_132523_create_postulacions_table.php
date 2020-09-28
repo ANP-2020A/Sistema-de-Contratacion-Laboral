@@ -16,11 +16,6 @@ class CreatePostulacionsTable extends Migration
         Schema::create('postulacions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('comentario');
-            $table->date('fecha_postulacion');
-            $table->unsignedBigInteger('oferta_id');
-            $table->foreign('oferta_id')->references('id')->on('ofertas')->onDelete('restrict');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

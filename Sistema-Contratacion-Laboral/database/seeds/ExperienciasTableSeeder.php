@@ -22,17 +22,20 @@ class ExperienciasTableSeeder extends Seeder
         $users = App\User::all();
         foreach ($users as $user) {
             // iniciamos sesión con este usuario
-            JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
-            // Y ahora con este usuario creamos algunos articulos
-            $num_experiencias = 3;
-            for ($j = 0; $j < $num_experiencias; $j++) {
-                Experiencia::create([
-                    'nombre_empresa' => $faker->company,
-                    'area_trabajo' => $faker->streetName,
-                    'lugar_trabajo' => $faker->address,
-                    'fecha_inicio' => $faker->date('y-m-d'),
-                    'fecha_finalización' => $faker->date('y-m-d'),
-                ]);
+            if ($user->role == 'ROLE_POSTULANTE') {
+                JWTAuth::attempt(['email' => $user->email, 'password' => '123123']);
+                // Y ahora con este usuario creamos algunos articulos
+                $num_experiencias = 2;
+                for ($j = 0; $j < $num_experiencias; $j++) {
+                    Experiencia::create([
+                        'nombre_empresa' => $faker->company,
+                        'area_trabajo' => $faker->streetName,
+                        'lugar_trabajo' => $faker->address,
+                        'fecha_inicio' => $faker->date('y-m-d'),
+                        'fecha_finalización' => $faker->date('y-m-d'),
+                        'postulante_id'=>$faker->numberBetween(1,5)
+                    ]);
+                }
             }
         }
     }
