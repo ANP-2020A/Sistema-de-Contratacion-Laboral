@@ -7,22 +7,28 @@ use Illuminate\Support\Facades\Auth;
 
 class Oferta extends Model
 {
-    protected $fillable = ['titulo_oferta','descripcion_oferta', 'fecha_publicacion','link_google_forms','area_id'];
+    protected $fillable = ['titulo_oferta', 'descripcion_oferta', 'fecha_publicacion', 'link_google_forms', 'area_id'];
 
-    public static function boot(){
+    public static function boot()
+    {
         parent::boot();
         static::creating(function ($ofertaempleo) {
-            //$ofertaempleo->empresa_id = Auth::id();
+            $ofertaempleo->empresa_id = Auth::id();
         });
     }
 
-    public function AreaTrabajo(){
-        return $this->belongsTo('App\AreaTrabajo');
+    public function AreaTrabajo()
+    {
+        return $this->belongsTo('App\AreaTrabajo', 'area_id');
     }
-    public function postulacion(){
-        return $this->hasMany('App\Postulacion')->withTimestamps();
+
+    public function Postulacion()
+    {
+        return $this->hasMany('App\Postulacion');
     }
-    public function Empresa(){
-        return $this->belongsTo('App\Empresa','user_id');
+
+    public function Empresa()
+    {
+        return $this->belongsTo('App\Empresa', 'empresa_id');
     }
 }

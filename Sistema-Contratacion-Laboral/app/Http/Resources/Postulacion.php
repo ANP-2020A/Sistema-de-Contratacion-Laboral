@@ -14,14 +14,17 @@ class Postulacion extends JsonResource
      */
     public function toArray($request)
     {
+        //$postulante = $this->postulacion->postulante;
+        //$oferta = $this->postulacion->oferta;
         return [
             'id' => $this->id,
-            'comentario'=>$this->comentario,
+            'coment'=>$this->comentario,
             'fecha_postulacion'=>$this->fecha_postulacion,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'user '=>"/api/users/".$this->user_id,
-            'oferta '=>"/api/ofertas/".$this->oferta_id,
+            'postulante '=>$this->postulante->postulante_id,
+            'nombre_postulnte '=>$this->postulante->postulante_id,
+            'oferta '=>$this->oferta->oferta_id,
         ];
     }
 }

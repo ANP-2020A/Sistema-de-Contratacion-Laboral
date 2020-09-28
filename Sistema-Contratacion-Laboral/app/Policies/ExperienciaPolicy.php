@@ -31,7 +31,17 @@ class ExperienciaPolicy
     }
     public function view(User $user, Experiencia $experiencia)
     {
-        return $user->id === $experiencia->user_id;
+        if ($user->isGranted(User::ROLE_SUPERADMIN)) {
+            return true;
+        }
+
+        else {
+            foreach ($experiencia->Postulante as $postulante) {
+                if ($postulante->id === $user->userable->id && $user->isGranted(User::ROLE_POSTULANTE)) {
+                    return true;
+                }
+            }
+        }
     }
 
     public function create(User $user)
@@ -40,10 +50,10 @@ class ExperienciaPolicy
     }
     public function update(User $user, Experiencia $experiencia)
     {
-        return $user === $experiencia->user_id;
+        return $user->userable->id === $experiencia->postulante_id && $user->isGranted(User::ROLE_POSTULANTE);
     }
     public function delete(User $user, Experiencia $experiencia)
     {
-        return ($user->isGranted(User::ROLE_POSTULANTE || $user->isGranted(User::ROLE_ADMIN)));
+        return $user->userable->id === $experiencia->postulante_id && $user->isGranted(User::ROLE_POSTULANTE);
     }
 }

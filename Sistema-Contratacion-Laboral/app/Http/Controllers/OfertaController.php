@@ -17,14 +17,18 @@ class OfertaController extends Controller
     public function index()
     {
         //$this->authorize('viewAny', Oferta::class);
-        return new OfertaCollection(Oferta::paginate(10));
+        return new OfertaCollection(Oferta::paginate(50));
     }
 
     public function show(Oferta $ofertaempleo)
     {
-        $this->authorize('view', $ofertaempleo);
+        //$this->authorize('view', $ofertaempleo);
 
         return response()->json(new OfertaResource($ofertaempleo), 200);
+    }
+    public function image(Oferta $ofertaempleo)
+    {
+        return response()->download(public_path(Storage::url($ofertaempleo->image)), $ofertaempleo->title);
     }
 
     public function store(Request $request)
@@ -43,7 +47,7 @@ class OfertaController extends Controller
         $ofertaempleo = new Oferta($request->all());
         $path = $request->image->store('public/ofertas');
 
-        $ofertaempleo->image = $path;
+        $ofertaempleo->image = 'ofertas/' . basename($path);
         $ofertaempleo->save();
 
         //$ofertaempleo = Oferta::create($request->all());

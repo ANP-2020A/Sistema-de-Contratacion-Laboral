@@ -34,11 +34,13 @@ class OfertaPolicy
     public function view(User $user, Oferta $oferta)
     {
         //return $user->userable_id+1 === $oferta->user_id || $user->isGranted(User::ROLE_EMPRESA);
-        if ($user->userable->id === $oferta->user_id && $user->isGranted(User::ROLE_EMPRESA)) {
+        if ($user->isGranted(User::ROLE_POSTULANTE)) {
             return true;
-        } else {
-            foreach ($oferta->students as $student) {
-                if ($student->id === $user->id && $user->isGranted(User::ROLE_STUDENT)) {
+        }
+
+        else {
+            foreach ($oferta->empresa as $empresa) {
+                if ($empresa->id === $user->userable->id && $user->isGranted(User::ROLE_EMPRESA)) {
                     return true;
                 }
             }
@@ -49,14 +51,23 @@ class OfertaPolicy
 
     public function create(User $user)
     {
-        return $user->isGranted(User::ROLE_POSTULANTE);
+        return $user->isGranted(User::ROLE_EMPRESA);
 
     }
 
     public function update(User $user, Oferta $oferta)
     {
-        return $user->isGranted(User::ROLE_POSTULANTE) && $user->userable_id === $oferta->user_id;
-
+        //return $user->isGranted(User::ROLE_POSTULANTE) && $user->userable_id === $oferta->user_id;
+        if ($oferta->empresa_id === $user->userable->id && $user->isGranted(User::ROLE_EMPRESA)) {
+            return true;
+        } else {
+            foreach ($oferta->empresa as $empresa) {
+                if ($empresa->id === $user->userable->id) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public function delete(User $user, Oferta $oferta)

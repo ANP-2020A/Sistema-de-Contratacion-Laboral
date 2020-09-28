@@ -16,13 +16,13 @@ class Postulacion extends Model
         });
     }
 
-    public function postulante()
+    public function Postulante()
     {
-        return $this->belongsTo('App\Postulante');
+        return $this->belongsTo('App\Postulante','postulante_id');
     }
 
-    public function oferta()
+    public function Oferta()
     {
-        return $this->belongsTo('App\Oferta');
+        return $this->belongsTo('App\Oferta','oferta_id');
     }
 }

@@ -14,9 +14,8 @@ class ExperienciaController extends Controller
     ];
     public function index(User $user)
     {
+        //$this->authorize('view',Experiencia::class);
         return response()->json(ExperienciaResource::collection(Experiencia::all()),200);
-        //return response()->json(ExperienciaResource::collection($user->Experiencia),200);
-
     }
 
     public function show(Experiencia $experiencias)

@@ -14,16 +14,19 @@ class Estudio extends JsonResource
      */
     public function toArray($request)
     {
+        //$postulante = $this->postulante->user;
         return [
             'id' => $this->id,
             'institucion'=>$this->institucion,
             'nivel'=>$this->nivel,
-            'fecha_inicio'=>$this->nivel_ingles,
-            'fecha_finalización'=>$this->nivel_ingles,
+            'fecha_inicio'=>$this->fecha_inicio,
+            'fecha_fin'=>$this->fecha_finalizacion,
             'nivel_ingles'=>$this->nivel_ingles,
+            'postulante' => '/api/postulantes/' . $this->postulante_id,
+            'nombre_postulante' => $this->postulante->nombre,
+            'apellido_postulante' => $this->postulante->apellido,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'user'=>"/api/users/".$this->user_id,
         ];
     }
 }

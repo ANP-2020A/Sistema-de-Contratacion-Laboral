@@ -13,11 +13,12 @@ class Estudio extends Model
     {
         parent::boot();
         static::creating(function ($estudio) {
-            //$estudio->postulante_id = Auth::id();
+            $estudio->postulante_id = Auth::id();
         });
     }
 
-    public function Postulante(){
+    public function Postulante()
+    {
         return $this->belongsTo('App\Postulante','postulante_id');
     }
 }
